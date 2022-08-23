@@ -2,7 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 
 // const url = "mongodb+srv://admin:beeDsNaD7hrUJflY@cluster0.0tjjv1e.mongodb.net/";
-const url = "mongodb+srv://admin1:fE3vrjSw0EHnmUxp@@cluster0.ewdkmkb.mongodb.net/";
+const url = "mongodb+srv://admin1:fE3vrjSw0EHnmUxp@cluster0.ewdkmkb.mongodb.net/";
 // const url = "mongodb://localhost:27017";
 const dbName = "jornada-fullstack-ocean-08-22";
 
