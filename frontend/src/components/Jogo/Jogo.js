@@ -10,6 +10,7 @@ function Jogo() {
       <img className="nuvens" src={clouds} alt="nuvens" />
       <img className="mario" src={mario} alt="mario" />
       <img className="cano" src={cano} alt="cano" />
+      <div className="chao"></div>
     </div>
   );
 }
