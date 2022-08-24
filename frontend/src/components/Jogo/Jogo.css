@@ -2,3 +2,23 @@
   background:#9BE5E4;
   height: 100vh;
 }
+
+.nuvens {
+  width: 200px;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+}
+
+.mario {
+  height: 100px;
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+}
+.cano {
+  height: 50px;
+  position: absolute;
+  bottom: 30px;
+  right: 50px;
+}
