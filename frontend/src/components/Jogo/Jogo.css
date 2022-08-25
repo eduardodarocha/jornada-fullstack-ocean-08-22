@@ -11,7 +11,7 @@
   position: absolute;
   top: 30px;
   /* left: 50%; */
-  animation: mover-direita-para-esquerda 8s linear  infinite;
+  animation: mover-direita-para-esquerda 8s linear infinite;
 }
 
 .mario {
