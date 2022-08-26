@@ -1,10 +1,10 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-// const url = "mongodb+srv://admin:beeDsNaD7hrUJflY@cluster0.0tjjv1e.mongodb.net/";
-const url = "mongodb+srv://admin1:fE3vrjSw0EHnmUxp@cluster0.ewdkmkb.mongodb.net/";
+const url = process.env.MONGO_DB_URL;
 // const url = "mongodb://localhost:27017";
-const dbName = "jornada-fullstack-ocean-08-22";
+const dbName = process.env.MONGO_DB_NAME;
 
 // Declaração da função main()
 async function main() {
@@ -15,7 +15,6 @@ async function main() {
   //  concluir. Portanto, utilizamos o mecanismo de
   //  Promises do JavaScript, que permitem aguardar
   //  esse tempo. Para isso, vamos usar o async/await.
-
   console.log("Conectando com o banco de dados...");
 
   const client = await MongoClient.connect(url);
