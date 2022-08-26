@@ -2,9 +2,14 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
-const url = process.env.MONGO_DB_URL;
-// const url = "mongodb://localhost:27017";
+const dbCluster = process.env.MONGO_DB_CLUSTER;
+const dbUser = process.env.MONGO_DB_USER;
+const dbPass = process.env.MONGO_DB_PASS;
 const dbName = process.env.MONGO_DB_NAME;
+
+// const url = process.env.MONGO_DB_URL;
+const url = `mongodb+srv://${dbUser}:${dbPass}@${dbCluster}`;
+// const url = "mongodb://localhost:27017";
 
 // Declaração da função main()
 async function main() {
