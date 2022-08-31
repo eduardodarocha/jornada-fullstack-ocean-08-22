@@ -5,7 +5,7 @@ import mario from "../../assets/mario.gif";
 import gameOver from "../../assets/game-over.png";
 import cano from "../../assets/pipe.png";
 
-function Jogo() {
+function Jogo(props) {
   const [estaPulando, setEstaPulando] = useState(false);
   const [estaMorto, setEstaMorto] = useState(false);
   const [pontos, setPontos] = useState(0);
@@ -28,15 +28,21 @@ function Jogo() {
     );
   }
 
-  setInterval(() => {
-    const estaNoCano = marioEstaNoCano();
-    // console.log("Mario está no cano", valor);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const estaNoCano = marioEstaNoCano();
+      // console.log("Mario está no cano", valor);
+  
+      if (!estaNoCano || estaMorto) {
+        return;
+      }
+      setEstaMorto(true);
+      props.onMorrer();
+    }, 100);
+    return () => clearInterval(interval);
+   },[estaMorto]);
 
-    if (!estaNoCano) {
-      return;
-    }
-    setEstaMorto(true);
-  }, 100);
+  
 
   // console.log({ estaMorto });
 
