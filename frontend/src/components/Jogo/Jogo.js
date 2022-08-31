@@ -46,10 +46,9 @@ function Jogo() {
       return;
     };
     setPontos(pontos + 1);
-    console.log("Pontos: ", { pontos });
+    // console.log("Pontos: ", { pontos });
   }, 500);
   return () => clearInterval(interval);
-
   },[estaMorto, pontos]);
 
   document.onkeydown = function () {
@@ -74,6 +73,7 @@ function Jogo() {
 
   return (
     <div className="jogo">
+      <div className="pontos">Pontos: {pontos}</div>
       <img className="nuvens" src={clouds} alt="nuvens" />
       <img ref={marioRef} className={marioClassName} src={marioImage} alt="mario" />
       <img ref={canoRef} className={"cano " + pararAnimacao } src={cano} alt="cano" />
