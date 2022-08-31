@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./Jogo.css";
 import clouds from "../../assets/clouds.png";
 import mario from "../../assets/mario.gif";
@@ -8,6 +8,7 @@ import cano from "../../assets/pipe.png";
 function Jogo() {
   const [estaPulando, setEstaPulando] = useState(false);
   const [estaMorto, setEstaMorto] = useState(false);
+  const [pontos, setPontos] = useState(0);
 
   const marioRef = useRef();
   const canoRef = useRef();
@@ -37,7 +38,19 @@ function Jogo() {
     setEstaMorto(true);
   }, 100);
 
-  console.log({ estaMorto });
+  // console.log({ estaMorto });
+
+  useEffect(function () {
+  const interval = setInterval(function () {
+    if (estaMorto) {
+      return;
+    };
+    setPontos(pontos + 1);
+    console.log("Pontos: ", { pontos });
+  }, 500);
+  return () => clearInterval(interval);
+
+  },[estaMorto, pontos]);
 
   document.onkeydown = function () {
     console.log("OnKeyDown");
