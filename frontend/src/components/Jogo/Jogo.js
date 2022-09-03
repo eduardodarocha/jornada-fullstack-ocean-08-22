@@ -29,7 +29,7 @@ function Jogo(props) {
   }
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = setInterval(function () {
       const estaNoCano = marioEstaNoCano();
       // console.log("Mario está no cano", valor);
   
@@ -40,7 +40,7 @@ function Jogo(props) {
       props.onMorrer();
     }, 100);
     return () => clearInterval(interval);
-   },[estaMorto]);
+   },[estaMorto, props]);
 
   
 
@@ -53,6 +53,7 @@ function Jogo(props) {
     };
     setPontos(pontos + 1);
     // console.log("Pontos: ", { pontos });
+    props.onPontos(pontos + 1);
   }, 500);
   return () => clearInterval(interval);
   },[estaMorto, pontos]);
