@@ -1,6 +1,9 @@
 import "./HighScore.css";
 
 function HighScore(props) {
+
+fetch("http://localhost:3333/pontuacoes").then();
+
   return ( 
   <div className="HighScore" >
     <div>
