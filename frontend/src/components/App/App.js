@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import HighScore from '../HighScore/HighScore';
-import Jogo from '../Jogo/Jogo';
-import './App.css';
+import { useState } from "react";
+import HighScore from "../HighScore/HighScore";
+import Jogo from "../Jogo/Jogo";
+import "./App.css";
 
 function App() {
   const [gameOver, setGameOver] = useState(false);

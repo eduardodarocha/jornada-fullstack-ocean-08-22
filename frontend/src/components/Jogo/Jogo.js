@@ -32,7 +32,7 @@ function Jogo(props) {
     const interval = setInterval(function () {
       const estaNoCano = marioEstaNoCano();
       // console.log("Mario está no cano", valor);
-  
+
       if (!estaNoCano || estaMorto) {
         return;
       }
@@ -40,23 +40,24 @@ function Jogo(props) {
       props.onMorrer();
     }, 100);
     return () => clearInterval(interval);
-   },[estaMorto, props]);
-
-  
+  }, [estaMorto, props]);
 
   // console.log({ estaMorto });
 
-  useEffect(function () {
-  const interval = setInterval(function () {
-    if (estaMorto) {
-      return;
-    };
-    setPontos(pontos + 1);
-    // console.log("Pontos: ", { pontos });
-    props.onPontos(pontos + 1);
-  }, 500);
-  return () => clearInterval(interval);
-  },[estaMorto, pontos, props]);
+  useEffect(
+    function () {
+      const interval = setInterval(function () {
+        if (estaMorto) {
+          return;
+        }
+        setPontos(pontos + 1);
+        // console.log("Pontos: ", { pontos });
+        props.onPontos(pontos + 1);
+      }, 500);
+      return () => clearInterval(interval);
+    },
+    [estaMorto, pontos, props]
+  );
 
   document.onkeydown = function () {
     console.log("OnKeyDown");
@@ -82,8 +83,18 @@ function Jogo(props) {
     <div className="jogo">
       <div className="pontos">Pontos: {pontos}</div>
       <img className="nuvens" src={clouds} alt="nuvens" />
-      <img ref={marioRef} className={marioClassName} src={marioImage} alt="mario" />
-      <img ref={canoRef} className={"cano " + pararAnimacao } src={cano} alt="cano" />
+      <img
+        ref={marioRef}
+        className={marioClassName}
+        src={marioImage}
+        alt="mario"
+      />
+      <img
+        ref={canoRef}
+        className={"cano " + pararAnimacao}
+        src={cano}
+        alt="cano"
+      />
       <div className="chao"></div>
     </div>
   );

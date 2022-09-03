@@ -1,7 +1,7 @@
-const express = require('express');
-const { MongoClient } = require('mongodb');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const { MongoClient } = require("mongodb");
+const cors = require("cors");
+require("dotenv").config();
 
 const dbCluster = process.env.MONGO_DB_CLUSTER;
 const dbUser = process.env.MONGO_DB_USER;
@@ -29,17 +29,16 @@ async function main() {
 
   console.log("Banco de dados conectado com sucesso!");
 
-
   const app = express();
   app.use(cors());
   app.use(express.json());
 
-  app.get('/', function (req, res) {
+  app.get("/", function (req, res) {
     // console.log("res", res);
     res.send(`<h1>'Hello World!!!'</h1>`);
   });
 
-  app.get('/oi', function (req, res) {
+  app.get("/oi", function (req, res) {
     // console.log("res", res);
     res.send(`<h1>'Alô mundo!'</h1>`);
   });
@@ -64,10 +63,10 @@ async function main() {
 
   app.get("/pontuacoes", async function (req, res) {
     const itens = await collection
-    .find()
-    .sort({ pontos: -1 })
-    .limit(10)
-    .toArray();
+      .find()
+      .sort({ pontos: -1 })
+      .limit(10)
+      .toArray();
     res.send(itens);
   });
 
@@ -79,7 +78,7 @@ async function main() {
     //   nome: item.nome,
     //   pontos: item.pontos,
     // });
-    await collection.insertOne(item)
+    await collection.insertOne(item);
     res.send(item);
   });
 
