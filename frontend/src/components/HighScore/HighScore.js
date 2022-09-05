@@ -1,20 +1,37 @@
 import { useEffect, useState } from "react";
 import "./HighScore.css";
 
-const[itens, setItens] = useState(undefined);
-
 function HighScore(props) {
+  const [itens, setItens] = useState(undefined);
 
-  
-  useEffect(() => {
-    async function carregaPontuacoes() {
-      console.log("Carregando pontuações...");
+  useEffect(function () {
+    async function carregarPontuacoes() {
       const response = await fetch("http://localhost:3333/pontuacoes");
-      const body = await response.body.json();
+
+      const body = await response.json();
+
       setItens(body);
     }
-  carregaPontuacoes();
+    carregarPontuacoes();
   }, []);
+  console.log(itens);
+
+  const itensEstaoCarregando = itens === undefined;
+
+  async function salvarPontuacao(event) {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const response = await fetch("http://localhost:3333/pontuacoes", {
+      method: "POST",
+      body: JSON.stringify({ nome: name, pontos: props.pontos }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    window.location.reload();
+    // const body = await response.json();
+  }
 
   return (
     <div className="HighScore">
@@ -23,14 +40,24 @@ function HighScore(props) {
       </div>
       <div>
         <h2>HighScore</h2>
-        <div>Paulo - 90 pontos</div>
-        <div>João - 80 pontos</div>
-        <div>Teresa - 60 pontos</div>
+
+        {itensEstaoCarregando ? (
+          <div>Carregando...</div>
+        ) : (
+          <div>
+            {itens.map((item, index) => (
+              <div key={`score_${index}`}>
+                  <b>{`${index + 1})`}</b> {item.nome} - {item.pontos}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
       <div>
         <h2>Registre sua pontuação!</h2>
-        <form>
-          <input type="text" placeholder="Digite seu nome" />
+        <form onSubmit={salvarPontuacao}>
+          <input type="text" name="name" placeholder="Digite seu nome" />
           <input type="submit" value="Enviar" />
         </form>
       </div>
