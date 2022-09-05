@@ -22,7 +22,7 @@ function HighScore(props) {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
-    const response = await fetch("http://localhost:3333/pontuacoes", {
+    const response = await fetch("https://jornada-fullstack-ocean-08-22.onrender.com/pontuacoes", {
       method: "POST",
       body: JSON.stringify({ nome: name, pontos: props.pontos }),
       headers: {
@@ -30,7 +30,7 @@ function HighScore(props) {
       },
     });
     window.location.reload();
-    // const body = await response.json();
+    const body = await response.json();
   }
 
   return (
