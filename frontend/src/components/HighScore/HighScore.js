@@ -6,7 +6,7 @@ function HighScore(props) {
 
   useEffect(function () {
     async function carregarPontuacoes() {
-      const response = await fetch("http://localhost:3333/pontuacoes");
+      const response = await fetch("https://jornada-fullstack-ocean-08-22.onrender.com/pontuacoes");
 
       const body = await response.json();
 
